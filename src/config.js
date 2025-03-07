@@ -21,6 +21,12 @@ const config = {
         globalCooldown: 5, // Global command cooldown in seconds
     },
     
+    // Intent settings
+    intents: {
+        useMessageContent: process.env.USE_MESSAGE_CONTENT === 'true',
+        useGuildMembers: process.env.USE_GUILD_MEMBERS === 'true',
+    },
+    
     // Discord API settings
     api: {
         version: '10', // Discord API version

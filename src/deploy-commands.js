@@ -29,12 +29,18 @@ const getCommands = (dir) => {
             
             // Only add commands with all required properties
             if (command.name && command.description) {
-                commands.push({
+                const commandData = {
                     name: command.name,
                     description: command.description,
-                    options: command.options || [],
-                    default_member_permissions: command.defaultMemberPermissions || null
-                });
+                    options: command.options || []
+                };
+                
+                // Convert BigInt permissions to string if they exist
+                if (command.defaultMemberPermissions) {
+                    commandData.default_member_permissions = command.defaultMemberPermissions.toString();
+                }
+                
+                commands.push(commandData);
                 logger.info(`Added command: ${command.name}`);
             } else {
                 logger.warn(`Skipped command in ${filePath}: Missing required properties`);

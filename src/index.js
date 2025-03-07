@@ -5,15 +5,23 @@ const path = require('path');
 const logger = require('./utils/logger');
 const config = require('./config');
 
+// Log which intents are being used
+logger.info(`Using intents: Guilds, GuildMessages, GuildVoiceStates${config.intents.useMessageContent ? ', MessageContent' : ''}${config.intents.useGuildMembers ? ', GuildMembers' : ''}`);
+
+// Create intents array with non-privileged intents
+const intents = [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildVoiceStates,
+];
+
+// Add privileged intents if enabled
+if (config.intents.useMessageContent) intents.push(GatewayIntentBits.MessageContent);
+if (config.intents.useGuildMembers) intents.push(GatewayIntentBits.GuildMembers);
+
 // Create a new client instance with all necessary intents
 const client = new Client({
-    intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.GuildVoiceStates,
-        GatewayIntentBits.MessageContent,
-        GatewayIntentBits.GuildMembers,
-    ],
+    intents: intents,
     partials: [
         Partials.Channel,
         Partials.Message,
@@ -50,5 +58,8 @@ client.login(config.bot.token)
     })
     .catch((error) => {
         logger.error(`Error logging in: ${error}`);
+        if (error.message.includes('disallowed intents')) {
+            logger.error('This error is related to privileged intents. Please make sure they are enabled in the Discord Developer Portal, or disable them in your .env file.');
+        }
         process.exit(1);
     }); 

@@ -17,6 +17,17 @@ A production-ready Discord bot template using Discord.js v14. This template incl
 
 - Node.js 16.9.0 or higher
 - npm or yarn
+- A Discord bot application with a token
+
+## Discord Bot Setup
+
+1. Go to the [Discord Developer Portal](https://discord.com/developers/applications)
+2. Create a New Application
+3. Navigate to the "Bot" tab and click "Add Bot"
+4. Under the "Privileged Gateway Intents" section:
+   - Enable "MESSAGE CONTENT INTENT" if your bot needs to read message content
+   - Enable "SERVER MEMBERS INTENT" if your bot needs to access member information
+5. Copy your Bot Token and Client ID for use in the .env file
 
 ## Installation
 
@@ -37,6 +48,8 @@ cp .env.example .env
 ```
 
 4. Edit the `.env` file with your Discord bot token and other configuration
+   - Set `USE_MESSAGE_CONTENT=true` if you enabled Message Content Intent
+   - Set `USE_GUILD_MEMBERS=true` if you enabled Server Members Intent
 
 ## Usage
 
@@ -103,6 +116,17 @@ discord-bot-template/
     ├── deploy-commands.js     # Command deployment script
     └── index.js               # Main bot file
 ```
+
+## Troubleshooting
+
+### "Error: Used disallowed intents"
+This error occurs when your bot is trying to use privileged intents that aren't enabled in the Discord Developer Portal.
+
+1. Go to the [Discord Developer Portal](https://discord.com/developers/applications)
+2. Select your application
+3. Navigate to the "Bot" tab
+4. Under "Privileged Gateway Intents" enable the required intents
+5. Or, set the intent environment variables to `false` in your `.env` file
 
 ## License
 

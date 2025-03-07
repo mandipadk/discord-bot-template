@@ -51,12 +51,20 @@ module.exports = (client) => {
                 }
                 
                 // Convert commands to the format Discord API expects
-                const commandsData = client.commandArray.map(command => ({
-                    name: command.name,
-                    description: command.description,
-                    options: command.options || [],
-                    default_member_permissions: command.defaultMemberPermissions || null
-                }));
+                const commandsData = client.commandArray.map(command => {
+                    const data = {
+                        name: command.name,
+                        description: command.description,
+                        options: command.options || []
+                    };
+                    
+                    // Convert BigInt permissions to string if they exist
+                    if (command.defaultMemberPermissions) {
+                        data.default_member_permissions = command.defaultMemberPermissions.toString();
+                    }
+                    
+                    return data;
+                });
                 
                 await rest.put(route, { body: commandsData });
                 
