@@ -27,6 +27,14 @@ const config = {
         useGuildMembers: process.env.USE_GUILD_MEMBERS === 'true',
     },
     
+    // Sharding settings
+    sharding: {
+        enabled: process.env.SHARDING_ENABLED === 'true',
+        totalShards: process.env.SHARDING_TOTAL_SHARDS || 'auto',
+        mode: process.env.SHARDING_MODE || 'process', // 'process' or 'worker'
+        serversPerShard: process.env.SERVERS_PER_SHARD || 1000,
+    },
+    
     // Discord API settings
     api: {
         version: '10', // Discord API version

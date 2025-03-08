@@ -2,10 +2,12 @@
   "name": "discord-bot-template",
   "version": "1.0.0",
   "description": "A production-ready Discord bot template",
-  "main": "src/index.js",
+  "main": "src/main.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
+    "start": "node src/main.js",
+    "dev": "nodemon src/main.js",
+    "start:no-sharding": "node src/index.js",
+    "dev:no-sharding": "nodemon src/index.js",
     "lint": "eslint ."
   },
   "keywords": [

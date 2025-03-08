@@ -62,4 +62,14 @@ client.login(config.bot.token)
             logger.error('This error is related to privileged intents. Please make sure they are enabled in the Discord Developer Portal, or disable them in your .env file.');
         }
         process.exit(1);
-    }); 
+    });
+
+// Add this line after client creation
+if (process.env.SHARDING_ENABLED === 'true') {
+    const { ShardClientUtil } = require('discord.js');
+    if (!client.shard) {
+        // If running from shard.js, this will already be set
+        // If not, we need to mock it for local development testing
+        client.shard = ShardClientUtil.singleton(client);
+    }
+} 
