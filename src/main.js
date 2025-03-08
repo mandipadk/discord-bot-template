@@ -3,9 +3,10 @@ const logger = require('./utils/logger');
 const config = require('./config');
 const { createShardManager } = require('./shard');
 const { initDatabase } = require('./database');
+const { initApiServices } = require('./api');
 
-// Initialize the database and then start the bot
-initDatabase()
+// Initialize the database and APIs, then start the bot
+Promise.all([initDatabase(), initApiServices()])
     .then(() => {
         // Check if sharding is enabled
         if (config.sharding.enabled) {
@@ -41,6 +42,6 @@ initDatabase()
         }
     })
     .catch(error => {
-        logger.error(`Failed to initialize database: ${error.message}`);
+        logger.error(`Failed to initialize services: ${error.message}`);
         process.exit(1);
     }); 

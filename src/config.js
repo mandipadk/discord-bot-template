@@ -38,6 +38,20 @@ const config = {
     // Discord API settings
     api: {
         version: '10', // Discord API version
+        openai: {
+            apiKey: process.env.OPENAI_API_KEY,
+            model: process.env.OPENAI_MODEL || 'gpt-3.5-turbo',
+            maxTokens: parseInt(process.env.OPENAI_MAX_TOKENS || '500', 10),
+            temperature: parseFloat(process.env.OPENAI_TEMPERATURE || '0.7'),
+        },
+        weather: {
+            apiKey: process.env.WEATHER_API_KEY,
+            units: process.env.WEATHER_UNITS || 'metric',
+        },
+        rateLimiting: {
+            maxRequestsPerMinute: parseInt(process.env.API_RATE_LIMIT || '60', 10),
+            maxConcurrent: parseInt(process.env.API_MAX_CONCURRENT || '10', 10),
+        },
     },
     
     // Bot owners/admins
