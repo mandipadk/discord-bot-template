@@ -32,3 +32,5 @@ coverage/
 # Build files
 dist/
 build/ 
+
+plans.md

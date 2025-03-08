@@ -62,6 +62,19 @@ const config = {
         warning: '#FEE75C', // Discord yellow
         info: '#5865F2',    // Discord blurple
     },
+    
+    // Database settings
+    database: {
+        uri: process.env.DATABASE_URI || 'mongodb://localhost:27017/discordbot',
+        options: {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        },
+        cache: {
+            ttl: parseInt(process.env.DATABASE_CACHE_TTL || '300', 10), // Time-to-live in seconds
+            checkPeriod: 60, // Check for expired entries every 60 seconds
+        },
+    },
 };
 
 module.exports = config; 
