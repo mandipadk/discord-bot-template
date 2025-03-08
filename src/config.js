@@ -7,6 +7,7 @@ const config = {
         clientId: process.env.CLIENT_ID,
         guildId: process.env.GUILD_ID,
         prefix: process.env.PREFIX || '!', // Legacy prefix for message commands
+        ownerId: process.env.OWNER_ID, // Bot owner's Discord ID
     },
     
     // Environment settings
@@ -17,8 +18,15 @@ const config = {
     
     // Command settings
     commands: {
-        cooldown: 3, // Default cooldown in seconds
-        globalCooldown: 5, // Global command cooldown in seconds
+        defaultCooldown: 3, // Default cooldown in seconds
+        globalCooldown: 1, // Global command cooldown in seconds
+        roleCooldowns: {
+            // Role ID : cooldown in seconds
+        },
+        channelCooldowns: {
+            // Channel ID : cooldown in seconds
+        },
+        disabledCommands: []
     },
     
     // Intent settings
@@ -88,6 +96,12 @@ const config = {
             ttl: parseInt(process.env.DATABASE_CACHE_TTL || '300', 10), // Time-to-live in seconds
             checkPeriod: 60, // Check for expired entries every 60 seconds
         },
+    },
+    
+    // Permission levels
+    permissions: {
+        // Command name : required permission level (0 = everyone, 5 = owner only)
+        // These override any Discord permissions set in the command
     },
 };
 

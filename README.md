@@ -36,7 +36,7 @@ A production-ready Discord bot template using Discord.js v14. This template incl
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/discord-bot-template.git
+git clone https://github.com/mandipadk/discord-bot-template.git
 cd discord-bot-template
 ```
 
@@ -50,7 +50,7 @@ npm install
 cp .env.example .env
 ```
 
-4. Edit the `.env` file with your Discord Bot Token, Application ID, and other settings:]
+4. Edit the `.env` file with your Discord Bot Token, Application ID, and other settings:
    - Set `USE_MESSAGE_CONTENT=true` if you enabled Message Content Intent
    - Set `USE_GUILD_MEMBERS=true` if you enabled Server Members Intent
 ```
