@@ -1,0 +1,88 @@
+{
+  "_langInfo": {
+    "name": "English (US)",
+    "nativeName": "English (US)",
+    "flag": "🇺🇸"
+  },
+  "common": {
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Information",
+    "yes": "Yes",
+    "no": "No",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "loading": "Loading...",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "unknown": "Unknown"
+  },
+  "errors": {
+    "generic": "An error occurred: {error}",
+    "commandNotFound": "This command does not exist or has been disabled.",
+    "missingPermissions": "You do not have the required permissions to use this command.",
+    "botMissingPermissions": "I don't have the necessary permissions to execute this command.",
+    "cooldown": "Please wait {time} more seconds before using this command again.",
+    "invalidArguments": "Invalid arguments provided."
+  },
+  "commands": {
+    "ping": {
+      "response": "🏓 Pong! API Latency: {ping}ms",
+      "description": "Check the bot's response time"
+    },
+    "help": {
+      "title": "Help Menu",
+      "description": "List of available commands",
+      "commandDescription": "Shows information about commands",
+      "commandsInCategory": "Commands in {category}:",
+      "usage": "Usage",
+      "aliases": "Aliases",
+      "cooldown": "Cooldown",
+      "parameters": "Parameters",
+      "subcommands": "Subcommands",
+      "noCommands": "No commands available in this category."
+    },
+    "settings": {
+      "title": "Server Settings",
+      "description": "Configure server settings",
+      "prefix": "Prefix",
+      "language": "Language",
+      "welcomeChannel": "Welcome Channel",
+      "welcomeMessage": "Welcome Message",
+      "updated": "Settings updated successfully!",
+      "resetSuccess": "Settings have been reset to default values."
+    },
+    "language": {
+      "description": "Change the bot's language for this server",
+      "currentLanguage": "Current language: {language}",
+      "availableLanguages": "Available languages:",
+      "chooseLanguage": "Choose a language",
+      "languageUpdated": "Language updated to {language}!",
+      "languageNotFound": "Language not found. Please choose from the available options."
+    }
+  },
+  "events": {
+    "welcome": {
+      "newMember": "Welcome to {server}, {user}!",
+      "memberJoined": "{user} has joined the server!",
+      "memberCount": "Member #{count}"
+    },
+    "goodbye": {
+      "memberLeft": "{user} has left the server.",
+      "memberKicked": "{user} was kicked from the server.",
+      "memberBanned": "{user} was banned from the server."
+    }
+  },
+  "permissions": {
+    "levels": {
+      "everyone": "Everyone",
+      "member": "Member",
+      "moderator": "Moderator",
+      "administrator": "Administrator",
+      "serverOwner": "Server Owner",
+      "botOwner": "Bot Owner"
+    }
+  }
+} 

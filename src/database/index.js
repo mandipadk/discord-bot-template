@@ -34,10 +34,19 @@ async function initDatabase() {
         const serviceFiles = fs.readdirSync(servicesPath).filter(file => file.endsWith('.js'));
         
         for (const file of serviceFiles) {
-            const serviceName = file.split('.')[0];
+            const fullServiceName = file.split('.')[0];
             const service = require(path.join(servicesPath, file));
-            services[serviceName] = service;
-            logger.info(`Loaded database service: ${serviceName}`);
+            
+            // Store with full name
+            services[fullServiceName] = service;
+            
+            // Also store without 'Service' suffix for easier access
+            if (fullServiceName.endsWith('Service')) {
+                const shortName = fullServiceName.replace('Service', '');
+                services[shortName] = service;
+            }
+            
+            logger.info(`Loaded database service: ${fullServiceName}`);
         }
         
         logger.info('Database system initialized successfully');

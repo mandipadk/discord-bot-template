@@ -4,9 +4,14 @@ const config = require('./config');
 const { createShardManager } = require('./shard');
 const { initDatabase } = require('./database');
 const { initApiServices } = require('./api');
+const localizationManager = require('./utils/localizationManager');
 
-// Initialize the database and APIs, then start the bot
-Promise.all([initDatabase(), initApiServices()])
+// Initialize all services and then start the bot
+Promise.all([
+    initDatabase(), 
+    initApiServices(),
+    localizationManager.init()
+])
     .then(() => {
         // Check if sharding is enabled
         if (config.sharding.enabled) {

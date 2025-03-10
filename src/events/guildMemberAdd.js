@@ -1,5 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 const guildSettingsService = require('../database/services/guildSettingsService');
+const localizationManager = require('../utils/localizationManager');
 const logger = require('../utils/logger');
 
 module.exports = {
@@ -23,13 +24,31 @@ module.exports = {
                 return;
             }
             
-            // Format welcome message
-            let welcomeMessage = settings.welcomeMessage || 'Welcome {user} to {server}!';
-            welcomeMessage = welcomeMessage
-                .replace('{user}', `<@${user.id}>`)
-                .replace('{server}', guild.name)
-                .replace('{username}', user.username)
-                .replace('{membercount}', guild.memberCount);
+            // Get localized welcome message
+            let welcomeMessage;
+            
+            if (settings.welcomeMessage) {
+                // Use custom welcome message from guild settings
+                welcomeMessage = settings.welcomeMessage
+                    .replace('{user}', `<@${user.id}>`)
+                    .replace('{server}', guild.name)
+                    .replace('{username}', user.username)
+                    .replace('{membercount}', guild.memberCount);
+            } else {
+                // Use localized default welcome message
+                welcomeMessage = await localizationManager.translateGuild(
+                    'events.welcome.newMember',
+                    guild.id,
+                    { user: `<@${user.id}>`, server: guild.name }
+                );
+            }
+            
+            // Get localized member count text
+            const memberCountText = await localizationManager.translateGuild(
+                'events.welcome.memberCount',
+                guild.id,
+                { count: guild.memberCount }
+            );
                 
             // Create welcome embed
             const welcomeEmbed = new EmbedBuilder()
@@ -37,7 +56,7 @@ module.exports = {
                 .setTitle(`Welcome to ${guild.name}!`)
                 .setDescription(welcomeMessage)
                 .setThumbnail(user.displayAvatarURL({ dynamic: true }))
-                .setFooter({ text: `Member #${guild.memberCount}` })
+                .setFooter({ text: memberCountText })
                 .setTimestamp();
                 
             // Send welcome message

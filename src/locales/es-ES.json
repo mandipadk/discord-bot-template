@@ -1,0 +1,88 @@
+{
+  "_langInfo": {
+    "name": "Spanish (Spain)",
+    "nativeName": "Español (España)",
+    "flag": "🇪🇸"
+  },
+  "common": {
+    "error": "Error",
+    "success": "Éxito",
+    "warning": "Advertencia",
+    "info": "Información",
+    "yes": "Sí",
+    "no": "No",
+    "enabled": "Activado",
+    "disabled": "Desactivado",
+    "loading": "Cargando...",
+    "saving": "Guardando...",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "unknown": "Desconocido"
+  },
+  "errors": {
+    "generic": "Ocurrió un error: {error}",
+    "commandNotFound": "Este comando no existe o ha sido desactivado.",
+    "missingPermissions": "No tienes los permisos necesarios para usar este comando.",
+    "botMissingPermissions": "No tengo los permisos necesarios para ejecutar este comando.",
+    "cooldown": "Por favor espera {time} segundos más antes de usar este comando de nuevo.",
+    "invalidArguments": "Argumentos inválidos."
+  },
+  "commands": {
+    "ping": {
+      "response": "🏓 ¡Pong! Latencia de API: {ping}ms",
+      "description": "Comprueba el tiempo de respuesta del bot"
+    },
+    "help": {
+      "title": "Menú de Ayuda",
+      "description": "Lista de comandos disponibles",
+      "commandDescription": "Muestra información sobre los comandos",
+      "commandsInCategory": "Comandos en {category}:",
+      "usage": "Uso",
+      "aliases": "Alias",
+      "cooldown": "Tiempo de espera",
+      "parameters": "Parámetros",
+      "subcommands": "Subcomandos",
+      "noCommands": "No hay comandos disponibles en esta categoría."
+    },
+    "settings": {
+      "title": "Configuración del Servidor",
+      "description": "Configura los ajustes del servidor",
+      "prefix": "Prefijo",
+      "language": "Idioma",
+      "welcomeChannel": "Canal de Bienvenida",
+      "welcomeMessage": "Mensaje de Bienvenida",
+      "updated": "¡Configuración actualizada con éxito!",
+      "resetSuccess": "La configuración ha sido restablecida a los valores predeterminados."
+    },
+    "language": {
+      "description": "Cambia el idioma del bot para este servidor",
+      "currentLanguage": "Idioma actual: {language}",
+      "availableLanguages": "Idiomas disponibles:",
+      "chooseLanguage": "Elige un idioma",
+      "languageUpdated": "¡Idioma actualizado a {language}!",
+      "languageNotFound": "Idioma no encontrado. Por favor, elige entre las opciones disponibles."
+    }
+  },
+  "events": {
+    "welcome": {
+      "newMember": "¡Bienvenido a {server}, {user}!",
+      "memberJoined": "¡{user} se ha unido al servidor!",
+      "memberCount": "Miembro #{count}"
+    },
+    "goodbye": {
+      "memberLeft": "{user} ha dejado el servidor.",
+      "memberKicked": "{user} fue expulsado del servidor.",
+      "memberBanned": "{user} fue baneado del servidor."
+    }
+  },
+  "permissions": {
+    "levels": {
+      "everyone": "Todos",
+      "member": "Miembro",
+      "moderator": "Moderador",
+      "administrator": "Administrador",
+      "serverOwner": "Dueño del Servidor",
+      "botOwner": "Dueño del Bot"
+    }
+  }
+} 

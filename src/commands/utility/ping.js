@@ -1,22 +1,26 @@
-const EmbedUtil = require('../../utils/embed');
+const { EmbedBuilder } = require('discord.js');
+const localizationManager = require('../../utils/localizationManager');
 
 module.exports = {
     name: 'ping',
-    description: 'Check the bot\'s latency and response time',
-    options: [],
+    description: 'Check the bot\'s response time',
     
     execute: async (interaction, client) => {
-        // Calculate bot latency
         const sent = await interaction.deferReply({ fetchReply: true });
-        const latency = sent.createdTimestamp - interaction.createdTimestamp;
+        const ping = sent.createdTimestamp - interaction.createdTimestamp;
         
-        // Create embed for ping information
-        const pingEmbed = EmbedUtil.info('Pong!', 
-            `🏓 **Bot Latency**: ${latency}ms\n` +
-            `📡 **WebSocket Latency**: ${Math.round(client.ws.ping)}ms`
+        // Get localized response
+        const responseText = await localizationManager.translateGuild(
+            'commands.ping.response', 
+            interaction.guild.id, 
+            { ping }
         );
         
-        // Reply with ping information
-        await interaction.editReply({ embeds: [pingEmbed] });
+        // Create and send embed
+        const embed = new EmbedBuilder()
+            .setColor('#5865F2')
+            .setDescription(responseText);
+            
+        await interaction.editReply({ embeds: [embed] });
     }
 }; 
